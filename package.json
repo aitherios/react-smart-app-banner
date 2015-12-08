@@ -1,0 +1,86 @@
+{
+  "name": "react-smart-app-banner",
+  "version": "0.0.1",
+  "description": "A simple smart app banner implementation with React.js support",
+  "main": "./dist/react-smart-app-banner-bundle.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build-example": "webpack --config example/webpack.config.js",
+    "serve-example": "npm run build && npm run build-example && node example/server.js",
+    "test": "./node_modules/.bin/jest",
+    "test-watch": "./node_modules/.bin/jest --watch",
+    "test-debug": "./node_modules/.bin/node-debug --no-inject.network --no-inject.profiles --hidden node_modules/ --no-preload --cli --nodejs --harmony ./node_modules/.bin/jest --runInBand",
+    "console": "./node_modules/babel-cli/bin/babel-node.js --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:react-smart-app-banner/react-smart-app-banner.git"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "ui",
+    "ios",
+    "iphone",
+    "android",
+    "windowsphone",
+    "smart",
+    "banner",
+    "smartbanner",
+    "smartappbanner",
+    "ReactSmartAppBanner"
+  ],
+  "maintainers": [
+    "Renan Mendes Carvalho <aitherios@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "react": "0.14.3",
+    "react-dom": "0.14.3"
+  },
+  "devDependencies": {
+    "babel-cli": "6.3.13",
+    "babel-jest": "6.0.1",
+    "babel-loader": "6.2.0",
+    "babel-plugin-add-module-exports": "0.1.1",
+    "babel-plugin-transform-decorators-legacy": "1.1.0",
+    "babel-plugin-transform-react-display-name": "6.1.18",
+    "babel-preset-es2015": "6.1.18",
+    "babel-preset-react": "6.1.18",
+    "babel-preset-stage-0": "6.1.18",
+    "babel-preset-stage-1": "^6.1.18",
+    "express": "4.13.3",
+    "jest-cli": "0.8.0",
+    "jest-webpack-alias": "2.0.0",
+    "node-inspector": "0.12.3",
+    "open": "0.0.5",
+    "react-addons-test-utils": "0.14.3",
+    "webpack": "1.12.9",
+    "webpack-dev-server": "1.14.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "./preprocessor.js",
+    "preprocessorIgnorePatterns": [
+      "node_modules"
+    ],
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs"
+    ],
+    "testFileExtensions": [
+      "es6",
+      "js",
+      "jsx"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6",
+      "jsx"
+    ]
+  }
+}
