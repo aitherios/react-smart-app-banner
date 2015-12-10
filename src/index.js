@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom'
 
 class ReactSmartAppBanner extends Component {
 
+  static propTypes = {
+    message: React.PropTypes.string
+  }
+
+  static defaultProps = {
+    message: "Hello!"
+  }
+
   render() {
     return (
       <span>
@@ -11,14 +19,6 @@ class ReactSmartAppBanner extends Component {
     )
   }
 
-}
-
-ReactSmartAppBanner.propTypes = {
-  message: React.PropTypes.string
-}
-
-ReactSmartAppBanner.defaultProps = {
-  message: "Hello!"
 }
 
 export default ReactSmartAppBanner
