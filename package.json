@@ -82,6 +82,7 @@
       "js",
       "jsx"
     ],
+    "testRunner": "<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js",
     "moduleFileExtensions": [
       "js",
       "json",
