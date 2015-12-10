@@ -10,6 +10,7 @@
     "test": "./node_modules/.bin/jest",
     "test-watch": "./node_modules/.bin/jest --watch",
     "test-debug": "./node_modules/.bin/node-debug --no-inject.network --no-inject.profiles --hidden node_modules/ --no-preload --cli --nodejs --harmony ./node_modules/.bin/jest --runInBand",
+    "lint": "./node_modules/eslint/bin/eslint.js .",
     "console": "./node_modules/babel-cli/bin/babel-node.js --debug"
   },
   "repository": {
@@ -34,14 +35,14 @@
     "Renan Mendes Carvalho <aitherios@gmail.com>"
   ],
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "react": "0.14.3",
-    "react-dom": "0.14.3"
+    "react": "~0.14",
+    "react-dom": "~0.14"
   },
   "devDependencies": {
     "babel-cli": "6.3.13",
+    "babel-eslint": "4.1.6",
     "babel-jest": "6.0.1",
     "babel-loader": "6.2.0",
     "babel-plugin-add-module-exports": "0.1.1",
@@ -51,12 +52,16 @@
     "babel-preset-react": "6.1.18",
     "babel-preset-stage-0": "6.1.18",
     "babel-preset-stage-1": "^6.1.18",
+    "eslint": "1.10.3",
+    "eslint-plugin-react": "3.11.3",
     "express": "4.13.3",
     "jest-cli": "0.8.0",
     "jest-webpack-alias": "2.0.0",
     "node-inspector": "0.12.3",
     "open": "0.0.5",
+    "react": "0.14.3",
     "react-addons-test-utils": "0.14.3",
+    "react-dom": "0.14.3",
     "webpack": "1.12.9",
     "webpack-dev-server": "1.14.0"
   },
