@@ -36,7 +36,10 @@
     "Renan Mendes Carvalho <aitherios@gmail.com>"
   ],
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "pure-render-decorator": "0.2.0",
+    "radium": "0.15.3"
+  },
   "peerDependencies": {
     "react": "~0.14",
     "react-dom": "~0.14"
@@ -53,6 +56,7 @@
     "babel-preset-react": "6.3.13",
     "babel-preset-stage-0": "6.3.13",
     "babel-preset-stage-1": "6.3.13",
+    "datauri": "0.8.0",
     "eslint": "1.10.3",
     "eslint-plugin-react": "3.11.3",
     "express": "4.13.3",
