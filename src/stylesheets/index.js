@@ -146,6 +146,9 @@ export const BaseStyle = {
       ':hover': {
         background: '#2ac7e1',
       },
+      ':active': {
+        background: '#2ac7e1',
+      },
     },
 
     ios: {
@@ -153,6 +156,9 @@ export const BaseStyle = {
       textTransform: 'uppercase',
       padding: '1rem 1.5rem',
       ':hover': {
+        opacity: '0.8',
+      },
+      ':active': {
         opacity: '0.8',
       }
     },
@@ -167,6 +173,9 @@ export const BaseStyle = {
       borderRadius: '3px',
       boxShadow: 'inset 0 0 0 1px #bfbfbf,0 1px 0 rgba(255,255,255,.6),0 2px 0 rgba(255,255,255,.7)inset',
       ':hover': {
+        background: 'linear-gradient(to bottom, #dcdcdc, #efefef)',
+      },
+      ':active': {
         background: 'linear-gradient(to bottom, #dcdcdc, #efefef)',
       },
     },
