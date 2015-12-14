@@ -11,7 +11,11 @@ export const BaseStyle = {
     android: {
       background: '#3d3d3d url(data:image/gif;base64,R0lGODlhCAAIAIABAFVVVf///yH5BAEHAAEALAAAAAAIAAgAAAINRG4XudroGJBRsYcxKAA7)',
       boxShadow: 'inset 0 4px 0 #88b131',
-    }
+    },
+    ios: {
+      background: '#f2f2f2',
+      boxShadow: '0 1px 1px rgba(0,0,0,.2)',
+    },
   },
   closeButton: {
     all: {
@@ -37,7 +41,9 @@ export const BaseStyle = {
 
     },
     ios: {
-
+      width: '18px',
+      height: '18px',
+      marginRight: '7px',
     },
   },
   viewButton: {
@@ -66,6 +72,15 @@ export const BaseStyle = {
         background: '#2ac7e1',
       },
     },
+
+    ios: {
+      color: '#0C71FD',
+      textTransform: 'uppercase',
+      padding: '1rem 1.5rem',
+      ':hover': {
+        opacity: '0.8',
+      }
+    },
   },
   icon: {
     all: {
@@ -76,7 +91,10 @@ export const BaseStyle = {
       width: '50px',
       height: '50px',
       borderRadius: '15%',
-    }
+    },
+    ios: {
+      margin: '0 10px 0 0',
+    },
   },
   header: {
     all: {
@@ -87,20 +105,45 @@ export const BaseStyle = {
       lineHeight: '1.2rem',
       fontWeight: '700',
       fontFamily: "'Helvetica Neue', sans-serif",
+      title: {
+        margin: '0',
+      },
+      subtitle: {
+        margin: '0',
+      }
     },
     android: {
       title: {
         color: '#fff',
         fontSize: '0.8rem',
-        margin: '0',
         fontWeight: '400',
       },
       subtitle: {
         fontSize: '0.7rem',
-        margin: '0',
         lineHeight: '0.9rem',
         fontWeight: '400',
       },
-    }
+    },
+    windows: {
+      title: {
+      },
+      subtitle: {
+      },
+    },
+    ios: {
+      title: {
+        color: '#4d4d4d',
+        fontWeight: '500',
+        fontSize: '0.8rem',
+        textShadow: '0 1px 0 rgba(255,255,255,.8)',
+      },
+      subtitle: {
+        color: '#6a6a6a',
+        textShadow: '0 1px 0 rgba(255,255,255,.8)',
+        fontSize: '0.7rem',
+        lineHeight: '0.9rem',
+        fontWeight: '300',
+      },
+    },
   }
 }

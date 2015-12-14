@@ -28,12 +28,18 @@ class Header extends Component {
         ]}
       >
         <h1
-          style={[BaseStyle.header[this.props.os].title]}
+          style={[
+            BaseStyle.header.all.title,
+            BaseStyle.header[this.props.os].title,
+          ]}
         >
           {this.props.title}
         </h1>
         <p
-          style={[BaseStyle.header[this.props.os].subtitle]}
+          style={[
+            BaseStyle.header.all.subtitle,
+            BaseStyle.header[this.props.os].subtitle,
+          ]}
         >
           {this.props.subtitle}
         </p>
