@@ -21,6 +21,7 @@ export const BaseStyle = {
       boxShadow: '0 1px 2px rgba(0,0,0,.5)',
     },
   },
+
   closeButton: {
     all: {
       fontSize: '0',
@@ -31,6 +32,7 @@ export const BaseStyle = {
       cursor: 'pointer',
       textDecoration: 'none',
       border: '0',
+      display: 'inline-block',
     },
     android: {
       width: '17px',
@@ -51,6 +53,7 @@ export const BaseStyle = {
       marginRight: '7px',
     },
   },
+
   icon: {
     all: {
       backgroundColor: '#ffffff',
@@ -68,6 +71,7 @@ export const BaseStyle = {
       boxShadow: '0 1px 3px rgba(0,0,0,.3)',
     }
   },
+
   header: {
     all: {
       color: '#ccc',
@@ -121,13 +125,13 @@ export const BaseStyle = {
       },
     },
   },
+
   viewButton: {
     all: {
       marginLeft: 'auto',
       fontFamily: "'Helvetica Neue', sans-serif",
       textDecoration: 'none',
     },
-
     android: {
       textAlign: 'center',
       display: 'block',
@@ -150,7 +154,6 @@ export const BaseStyle = {
         background: '#2ac7e1',
       },
     },
-
     ios: {
       color: '#0C71FD',
       textTransform: 'uppercase',
@@ -162,7 +165,6 @@ export const BaseStyle = {
         opacity: '0.8',
       }
     },
-
     windows: {
       color: '#6a6a6a',
       textTransform: 'uppercase',
