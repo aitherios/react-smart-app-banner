@@ -14,9 +14,13 @@
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "console": "./node_modules/babel-cli/bin/babel-node.js --debug"
   },
+  "homepage": "https://github.com/react-smart-app-banner/react-smart-app-banner",
   "repository": {
     "type": "git",
-    "url": "git@github.com:react-smart-app-banner/react-smart-app-banner.git"
+    "url": "https://github.com/react-smart-app-banner/react-smart-app-banner"
+  },
+  "bugs": {
+    "url": "https://github.com/react-smart-app-banner/react-smart-app-banner/issues"
   },
   "keywords": [
     "react",
@@ -32,6 +36,7 @@
     "smartappbanner",
     "ReactSmartAppBanner"
   ],
+  "author": "Renan Mendes Carvalho <aitherios@gmail.com>",
   "maintainers": [
     "Renan Mendes Carvalho <aitherios@gmail.com>"
   ],
