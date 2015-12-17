@@ -20,15 +20,25 @@ class ReactSmartAppBanner extends Component {
       text: React.PropTypes.string,
       style: React.PropTypes.object,
     }),
+    icon: React.PropTypes.shape({
+      style: React.PropTypes.object,
+    }),
+    header: React.PropTypes.shape({
+      title: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.object,
+      ]),
+      subtitle: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.object,
+      ]),
+      style: React.PropTypes.object,
+    }),
     viewButton: React.PropTypes.shape({
       attributes: React.PropTypes.object,
       text: React.PropTypes.string,
+      style: React.PropTypes.object,
     }),
-    header: React.PropTypes.shape({
-      title: React.PropTypes.string,
-      subtitle: React.PropTypes.string,
-    }),
-    icon: React.PropTypes.object,
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']),
   }
 
@@ -92,7 +102,7 @@ class ReactSmartAppBanner extends Component {
     if(component === 'closeButton'){
       props = Object.assign({},
         this.props[component],
-        {os: this.state.os, onClick: ::this.close, ref: 'closeButton'}
+        {os: this.state.os, onClick: ::this.close}
       )
     } else {
       props = Object.assign({},

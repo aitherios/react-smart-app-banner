@@ -15,6 +15,7 @@ class CloseButton extends Component {
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
     svgFor: React.PropTypes.object,
     onClick: React.PropTypes.func.isRequired,
+    style: React.PropTypes.object,
   }
 
   static defaultProps = {
@@ -24,6 +25,7 @@ class CloseButton extends Component {
       title: 'Close Smart App Banner',
     },
     text: 'Close Smart App Banner',
+    style: {},
     svgFor: {
       android: {
         viewBox: '-50 -50 270 270',
@@ -59,6 +61,7 @@ class CloseButton extends Component {
         style={[
           BaseStyle.closeButton.all,
           BaseStyle.closeButton[this.props.os],
+          this.props.style[this.props.os],
         ]}
       >
         <span>{this.props.text}</span>

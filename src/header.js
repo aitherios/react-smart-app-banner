@@ -10,14 +10,45 @@ import { BaseStyle } from './stylesheets'
 class Header extends Component {
 
   static propTypes = {
-    title: React.PropTypes.string,
-    subtitle: React.PropTypes.string,
+    title: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.shape({
+        android: React.PropTypes.string,
+        windows: React.PropTypes.string,
+        ios: React.PropTypes.string,
+      }),
+    ]),
+    subtitle: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.shape({
+        android: React.PropTypes.string,
+        windows: React.PropTypes.string,
+        ios: React.PropTypes.string,
+      }),
+    ]),
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
+    style: React.PropTypes.object,
   }
 
   static defaultProps = {
     title: 'App Title',
     subtitle: 'Subtitle',
+  }
+
+  title() {
+    if(typeof(this.props.title) === 'string') {
+      return this.props.title
+    } else {
+      return this.props.title[this.props.os]
+    }
+  }
+
+  subtitle() {
+    if(typeof(this.props.subtitle) === 'string') {
+      return this.props.subtitle
+    } else {
+      return this.props.subtitle[this.props.os]
+    }
   }
 
   render() {
@@ -31,9 +62,10 @@ class Header extends Component {
           style={[
             BaseStyle.header.all.title,
             BaseStyle.header[this.props.os].title,
+            this.props.style,
           ]}
         >
-          {this.props.title}
+          {this.title()}
         </h1>
         <p
           style={[
@@ -41,7 +73,7 @@ class Header extends Component {
             BaseStyle.header[this.props.os].subtitle,
           ]}
         >
-          {this.props.subtitle}
+          {this.subtitle()}
         </p>
       </header>
     )

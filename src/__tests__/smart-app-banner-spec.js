@@ -162,4 +162,35 @@ describe('ReactSmartAppBanner', () => {
     })
   })
 
+  describe('when attributes are overwitten', () => {
+    it('renders', () => {
+      component = renderComponent({
+        icon: {
+          style: {
+            android: { backgroundImage: 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)' },
+            windows: { backgroundImage: 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)' },
+            ios: { backgroundImage: 'url(data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)' },
+          },
+        },
+        header: {
+          title: 'Facebook',
+          subtitle: {
+            android: 'Free - In Google Play',
+            windows: 'Free - In Windows Store',
+            ios: 'Free - On the App Store',
+          },
+        },
+        viewButton: {
+          attributes: {
+            android: { href: 'https://play.google.com/store/apps/details?id=com.facebook.katana' },
+            ios: { href: 'https://itunes.apple.com/US/app/id284882215' },
+            windows: { href: 'http://www.windowsphone.com/s?appid=82a23635-5bd9-df11-a844-00237de2db9e' }
+          },
+          text: 'Open',
+        },
+      })
+      expect(component).not.toBeFalsy()
+    })
+  })
+
 })

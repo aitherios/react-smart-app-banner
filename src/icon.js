@@ -11,6 +11,11 @@ class Icon extends Component {
 
   static propTypes = {
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
+    style: React.PropTypes.object,
+  }
+
+  static defaultProps = {
+    style: {},
   }
 
   render() {
@@ -19,6 +24,8 @@ class Icon extends Component {
         style={[
           BaseStyle.icon.all,
           BaseStyle.icon[this.props.os],
+          this.props.style.all,
+          this.props.style[this.props.os],
         ]}
       />
     )
