@@ -1,4 +1,5 @@
 jest.dontMock('../smart-app-banner')
+jest.dontMock('../close-button')
 jest.dontMock('mobile-detect')
 
 import React from 'react'
@@ -12,6 +13,7 @@ describe('ReactSmartAppBanner', () => {
 
   var component
   const __origNav = window.navigator
+  const __origLocalStorage = window.localStorage
 
   function renderComponent(props){
     return TestUtils.renderIntoDocument(
@@ -105,12 +107,59 @@ describe('ReactSmartAppBanner', () => {
   })
 
   describe('when rendering in server', () => {
-
     it('renders', () => {
       component = serverRenderComponent()
       expect(component).not.toBeFalsy()
     })
+  })
 
+  describe('when close clicked', () => {
+    var node
+
+    beforeEach(() => {
+      window['navigator'] = { userAgent: 'Mozilla/5.0 (Linux; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.114 Mobile Safari/537.36' }
+    })
+    afterEach(() => {
+      window['navigator'] = __origNav
+    })
+
+    it('sets the hide state', () => {
+      component = renderComponent()
+      component.close()
+      expect(component.state.hide).toBe(true)
+    })
+
+    describe('6 days ago', () => {
+      beforeEach(() => {
+        window['date'] = Date.now() - 86400000 * 6
+        window['localStorage'] = {
+          setItem: () => {},
+          getItem: () => { return window['date'] },
+          removeItem: () => { window['date'] = undefined },
+        }
+        component = renderComponent()
+      })
+      afterEach(() => {
+        window['localStorage'] = __origLocalStorage
+      })
+      it('sets the hide state', () => { expect(component.state.hide).toBe(true) })
+    })
+
+    describe('8 days ago', () => {
+      beforeEach(() => {
+        window['date'] = Date.now() - 86400000 * 8
+        window['localStorage'] = {
+          setItem: () => {},
+          getItem: () => { return window['date'] },
+          removeItem: () => { window['date'] = undefined },
+        }
+        component = renderComponent()
+      })
+      afterEach(() => {
+        window['localStorage'] = __origLocalStorage
+      })
+      it('sets the hide state', () => { expect(component.state.hide).toBe(false) })
+    })
   })
 
 })
