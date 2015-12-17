@@ -10,6 +10,9 @@ const ReactSmartAppBanner = require('../smart-app-banner')
 
 describe('ReactSmartAppBanner', () => {
 
+  var component
+  const __origNav = window.navigator
+
   function renderComponent(props){
     return TestUtils.renderIntoDocument(
       <ReactSmartAppBanner {... props}/>
@@ -23,62 +26,88 @@ describe('ReactSmartAppBanner', () => {
   }
 
   it('renders', () => {
-    var component = renderComponent()
+    component = renderComponent()
     expect(component).not.toBeFalsy()
   })
 
-  it('renders for android like Nexus 5', () => {
-    const __origNav = window.navigator
-    window['navigator'] = { userAgent: 'Mozilla/5.0 (Linux; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.114 Mobile Safari/537.36' }
-
-    var component = renderComponent()
-    expect(component).not.toBeFalsy()
-    expect(component.state.os).toBe('android')
-    expect(component.state.hide).toBe(false)
-
-    window['navigator'] = __origNav
+  describe('when using a Nexus 5 on Chrome', () => {
+    beforeEach(() => {
+      window['navigator'] = { userAgent: 'Mozilla/5.0 (Linux; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.114 Mobile Safari/537.36' }
+      component = renderComponent()
+    })
+    afterEach(() => {
+      window['navigator'] = __origNav
+    })
+    it('renders', () => { expect(component).not.toBeFalsy() })
+    it('is android', () => { expect(component.state.os).toBe('android') })
+    it('is not hidden', () => { expect(component.state.hide).toBe(false) })
   })
 
-  it('renders for windows like Nokia Lumia 520', () => {
-    const __origNav = window.navigator
-    window['navigator'] = { userAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)' }
-
-    var component = renderComponent()
-    expect(component).not.toBeFalsy()
-    expect(component.state.os).toBe('windows')
-    expect(component.state.hide).toBe(false)
-
-    window['navigator'] = __origNav
+  describe('when using a Nokia Lumia 520 on IEMobile', () => {
+    beforeEach(() => {
+      window['navigator'] = { userAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)' }
+      component = renderComponent()
+    })
+    afterEach(() => {
+      window['navigator'] = __origNav
+    })
+    it('renders', () => { expect(component).not.toBeFalsy() })
+    it('is windows', () => { expect(component.state.os).toBe('windows') })
+    it('is not hidden', () => { expect(component.state.hide).toBe(false) })
   })
 
-  it('renders for ios like iPhone 4 on ios 4', () => {
-    const __origNav = window.navigator
-    window['navigator'] = { userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5' }
-
-    var component = renderComponent()
-    expect(component).not.toBeFalsy()
-    expect(component.state.os).toBe('ios')
-    expect(component.state.hide).toBe(false)
-
-    window['navigator'] = __origNav
+  describe('when using an iPhone 4 on Safari for iOS 4.2.1', () => {
+    beforeEach(() => {
+      window['navigator'] = { userAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5' }
+      component = renderComponent()
+    })
+    afterEach(() => {
+      window['navigator'] = __origNav
+    })
+    it('renders', () => { expect(component).not.toBeFalsy() })
+    it('is ios', () => { expect(component.state.os).toBe('ios') })
+    it('is not hidden', () => { expect(component.state.hide).toBe(false) })
   })
 
-  it("doesn't render for iPhone 5 on ios 7", () => {
-    const __origNav = window.navigator
-    window['navigator'] = { userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53' }
+  describe('when using an iPhone 5 on Chrome for iOS 7.0', () => {
+    beforeEach(() => {
+      window['navigator'] = { userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/534.46.0 (KHTML, like Gecko) CriOS/19.0.1084.60 Mobile/9B206 Safari/7534.48.3' }
+      component = renderComponent()
+    })
+    afterEach(() => {
+      window['navigator'] = __origNav
+    })
+    it('renders', () => { expect(component).not.toBeFalsy() })
+    it('is ios', () => { expect(component.state.os).toBe('ios') })
+    it('is not hidden', () => { expect(component.state.hide).toBe(false) })
+  })
 
-    var component = renderComponent()
-    expect(component).not.toBeFalsy()
-    expect(component.state.os).toBe('ios')
-    expect(component.state.hide).toBe(true)
+  describe('when using an iPhone 5 on Safari for iOS 7.0', () => {
+    beforeEach(() => {
+      window['navigator'] = { userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53' }
+      component = renderComponent()
+    })
+    afterEach(() => {
+      window['navigator'] = __origNav
+    })
+    it('renders', () => { expect(component).not.toBeFalsy() })
+    it('is ios', () => { expect(component.state.os).toBe('ios') })
+    it('is hidden', () => { expect(component.state.hide).toBe(true) })
 
-    window['navigator'] = __origNav
+    describe('but overwritting OS with android', () => {
+      beforeEach(() => {
+        component = renderComponent({ os: 'android' })
+      })
+      it('renders', () => { expect(component).not.toBeFalsy() })
+      it('is android', () => { expect(component.state.os).toBe('android') })
+      it('is not hidden', () => { expect(component.state.hide).toBe(false) })
+    })
   })
 
   describe('when rendering in server', () => {
 
     it('renders', () => {
-      var component = serverRenderComponent()
+      component = serverRenderComponent()
       expect(component).not.toBeFalsy()
     })
 

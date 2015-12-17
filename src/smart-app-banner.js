@@ -32,29 +32,21 @@ class ReactSmartAppBanner extends Component {
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']),
   }
 
-  static defaultProps = {
-    os: 'android',
-  }
-
   constructor(props) {
     super(props)
   }
 
   state = {
-    os: this.props.os,
-    hide: true,
+    os: this.props.os || 'android',
+    hide: this.props.os ? false : true,
   }
 
   componentDidMount() {
     this.parseDevice()
   }
 
-  mergeProps = (component) => {
-    return Object.assign({}, this.props[component], {os: this.state.os})
-  }
-
   parseDevice = () => {
-    if (window && window.navigator) {
+    if (window && window.navigator && !this.props.os) {
       let md = new MobileDetect(window.navigator.userAgent)
       this.md = md
 
@@ -68,6 +60,26 @@ class ReactSmartAppBanner extends Component {
         this.setState({os: 'windows', hide: false})
       }
     }
+  }
+
+  close = () => {
+    this.setState({hide: true})
+  }
+
+  mergeProps = (component) => {
+    let props
+    if(component === 'closeButton'){
+      props = Object.assign({},
+        this.props[component],
+        {os: this.state.os, onClick: ::this.close}
+      )
+    } else {
+      props = Object.assign({},
+        this.props[component],
+        {os: this.state.os}
+      )
+    }
+    return props
   }
 
   render() {
