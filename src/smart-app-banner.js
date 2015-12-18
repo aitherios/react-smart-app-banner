@@ -42,8 +42,6 @@ class ReactSmartAppBanner extends Component {
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']),
   }
 
-  static storageKey = 'react-smart-app-banner_closed_at'
-
   constructor(props) {
     super(props)
   }
@@ -57,6 +55,8 @@ class ReactSmartAppBanner extends Component {
     this.parseDevice()
     this.rememberHideState()
   }
+
+  static storageKey = 'react-smart-app-banner_closed_at'
 
   parseDevice = () => {
     if (window && window.navigator && !this.props.os) {
