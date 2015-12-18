@@ -135,7 +135,6 @@ export const BaseStyle = {
     android: {
       textAlign: 'center',
       display: 'block',
-      padding: '0 10px',
       background: 'linear-gradient(to bottom,#42b6c9,#39a9bb), #42b6c9',
       textTransform: 'none',
       textShadow: 'none',
