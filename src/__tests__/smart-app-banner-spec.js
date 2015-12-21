@@ -193,4 +193,22 @@ describe('ReactSmartAppBanner', () => {
     })
   })
 
+  describe('when allowedOs is only ["android", "ios"]', () => {
+    describe('and a Nokia Lumia 520 on IEMobile is used', () => {
+      beforeEach(() => {
+        window['navigator'] = { userAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)' }
+        component = renderComponent({allowedOs: ['android', 'ios']})
+      })
+      afterEach(() => {
+        window['navigator'] = __origNav
+      })
+      it('renders', () => { expect(component).not.toBeFalsy() })
+      it('is windows', () => { expect(component.state.os).toBe('windows') })
+      it('is hidden', () => {
+        jest.runAllTicks()
+        jest.runAllTimers()
+        expect(component.state.hide).toBe(true)
+      })
+    })
+  })
 })

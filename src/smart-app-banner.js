@@ -40,6 +40,11 @@ class ReactSmartAppBanner extends Component {
       style: React.PropTypes.object,
     }),
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']),
+    allowedOs: React.PropTypes.arrayOf(React.PropTypes.string),
+  }
+
+  static defaultProps = {
+    allowedOs: ['android', 'windows', 'ios'],
   }
 
   constructor(props) {
@@ -52,25 +57,25 @@ class ReactSmartAppBanner extends Component {
   }
 
   componentDidMount() {
-    this.parseDevice()
+    this.detectOs()
     this.rememberHideState()
   }
 
   static storageKey = 'react-smart-app-banner_closed_at'
 
-  parseDevice = () => {
+  detectOs = () => {
     if (window && window.navigator && !this.props.os) {
       let md = new MobileDetect(window.navigator.userAgent)
       this.md = md
 
       if (md.is('iOS') && md.is('Safari') && md.version('iOS') > 6) {
-        this.setState({os: 'ios'})
+        this.setState({os: 'ios'}, this.checkAllowedOs)
       } else if (md.is('iOS')) {
-        this.setState({os: 'ios', hide: false})
+        this.setState({os: 'ios', hide: false}, this.checkAllowedOs)
       } else if (md.is('AndroidOS')) {
-        this.setState({os: 'android', hide: false})
+        this.setState({os: 'android', hide: false}, this.checkAllowedOs)
       } else if (md.is('WindowsPhoneOS')) {
-        this.setState({os: 'windows', hide: false})
+        this.setState({os: 'windows', hide: false}, this.checkAllowedOs)
       }
     }
   }
@@ -83,6 +88,12 @@ class ReactSmartAppBanner extends Component {
       } else {
         window.localStorage.removeItem(ReactSmartAppBanner.storageKey)
       }
+    }
+  }
+
+  checkAllowedOs = () => {
+    if (this.props.allowedOs.indexOf(this.state.os) < 0) {
+      this.setState({hide: true})
     }
   }
 
