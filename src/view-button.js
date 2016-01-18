@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Radium from 'radium'
 import PureRender from 'pure-render-decorator'
 
 import { BaseStyle } from './stylesheets'
 
-@Radium
 @PureRender
 class ViewButton extends Component {
 
@@ -29,11 +27,11 @@ class ViewButton extends Component {
     return (
       <a
         {... this.props.attributes[this.props.os]}
-        style={[
+        style={Object.assign({},
           BaseStyle.viewButton.all,
           BaseStyle.viewButton[this.props.os],
           this.props.style,
-        ]}
+        )}
       >
         {this.props.text}
       </a>

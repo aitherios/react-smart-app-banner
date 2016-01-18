@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Radium from 'radium'
 import PureRender from 'pure-render-decorator'
 
 import { BaseStyle } from './stylesheets'
 
-@Radium
 @PureRender
 class CloseButton extends Component {
 
@@ -58,11 +56,11 @@ class CloseButton extends Component {
     return (
       <a
         { ... Object.assign({}, this.props.attributes, {onClick: this.props.onClick}) }
-        style={[
+        style={Object.assign({},
           BaseStyle.closeButton.all,
           BaseStyle.closeButton[this.props.os],
           this.props.style[this.props.os],
-        ]}
+        )}
       >
         <span>{this.props.text}</span>
         <svg {... this.props.svgFor[this.props.os]}>

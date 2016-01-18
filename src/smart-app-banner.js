@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Radium from 'radium'
 import PureRender from 'pure-render-decorator'
 import MobileDetect from 'mobile-detect'
 
@@ -10,7 +9,6 @@ import Header from './header'
 import Icon from './icon'
 import { BaseStyle } from './stylesheets'
 
-@Radium
 @PureRender
 class ReactSmartAppBanner extends Component {
 
@@ -127,10 +125,10 @@ class ReactSmartAppBanner extends Component {
   render() {
     if (this.state.hide) { return false }
     return (
-      <section style={[
+      <section style={Object.assign({},
           BaseStyle.smartAppBanner.all,
           BaseStyle.smartAppBanner[this.state.os],
-        ]}
+        )}
       >
         <CloseButton {... this.mergeProps('closeButton')}/>
         <Icon {... this.mergeProps('icon')}/>

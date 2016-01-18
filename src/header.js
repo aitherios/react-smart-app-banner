@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Radium from 'radium'
 import PureRender from 'pure-render-decorator'
 
 import { BaseStyle } from './stylesheets'
 
-@Radium
 @PureRender
 class Header extends Component {
 
@@ -54,24 +52,24 @@ class Header extends Component {
   render() {
     return (
       <header
-        style={[
+        style={Object.assign({},
           BaseStyle.header.all,
-        ]}
+        )}
       >
         <h1
-          style={[
+          style={Object.assign({},
             BaseStyle.header.all.title,
             BaseStyle.header[this.props.os].title,
             this.props.style,
-          ]}
+          )}
         >
           {this.title()}
         </h1>
         <p
-          style={[
+          style={Object.assign({},
             BaseStyle.header.all.subtitle,
             BaseStyle.header[this.props.os].subtitle,
-          ]}
+          )}
         >
           {this.subtitle()}
         </p>

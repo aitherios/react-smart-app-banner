@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Radium from 'radium'
 import PureRender from 'pure-render-decorator'
 
 import { BaseStyle } from './stylesheets'
 
-@Radium
 @PureRender
 class Icon extends Component {
 
@@ -21,12 +19,12 @@ class Icon extends Component {
   render() {
     return (
       <figure
-        style={[
+        style={Object.assign({},
           BaseStyle.icon.all,
           BaseStyle.icon[this.props.os],
           this.props.style.all,
           this.props.style[this.props.os],
-        ]}
+        )}
       />
     )
   }
