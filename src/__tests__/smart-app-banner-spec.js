@@ -187,6 +187,7 @@ describe('ReactSmartAppBanner', () => {
             windows: { href: 'http://www.windowsphone.com/s?appid=82a23635-5bd9-df11-a844-00237de2db9e' }
           },
           text: 'Open',
+          onClick: () => {}
         },
       })
       expect(component).not.toBeFalsy()
