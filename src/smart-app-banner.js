@@ -39,11 +39,11 @@ class ReactSmartAppBanner extends Component {
     }),
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']),
     allowedOs: React.PropTypes.arrayOf(React.PropTypes.string),
-  }
+  };
 
   static defaultProps = {
     allowedOs: ['android', 'windows', 'ios'],
-  }
+  };
 
   constructor(props) {
     super(props)
@@ -52,16 +52,16 @@ class ReactSmartAppBanner extends Component {
   state = {
     os: this.props.os || 'android',
     hide: this.props.os ? false : true,
-  }
+  };
 
   componentDidMount() {
     this.detectOs()
     this.rememberHideState()
   }
 
-  static storageKey = 'react-smart-app-banner_closed_at'
+  static storageKey = 'react-smart-app-banner_closed_at';
 
-  detectOs = () => {
+  detectOs() {
     if (window && window.navigator && !this.props.os) {
       let md = new MobileDetect(window.navigator.userAgent)
       this.md = md
@@ -78,7 +78,7 @@ class ReactSmartAppBanner extends Component {
     }
   }
 
-  rememberHideState = () => {
+  rememberHideState() {
     if(window && window.localStorage){
       var lastCloseDate = window.localStorage.getItem(ReactSmartAppBanner.storageKey)
       if(lastCloseDate && (Date.now() - lastCloseDate) < 86400000 * 7) {
@@ -89,13 +89,13 @@ class ReactSmartAppBanner extends Component {
     }
   }
 
-  checkAllowedOs = () => {
+  checkAllowedOs() {
     if (this.props.allowedOs.indexOf(this.state.os) < 0) {
       this.setState({hide: true})
     }
   }
 
-  close = () => {
+  close() {
     this.setState({hide: true})
     if(
       window &&
@@ -106,7 +106,7 @@ class ReactSmartAppBanner extends Component {
     }
   }
 
-  mergeProps = (component) => {
+  mergeProps(component) {
     let props
     if(component === 'closeButton'){
       props = Object.assign({},

@@ -12,7 +12,7 @@ class ViewButton extends Component {
     text: React.PropTypes.string,
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
     style: React.PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     attributes: {
@@ -21,7 +21,7 @@ class ViewButton extends Component {
       ios: { href: '#', rel: 'external', title: 'View App' },
     },
     text: 'View',
-  }
+  };
 
   render() {
     return (

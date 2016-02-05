@@ -10,11 +10,11 @@ class Icon extends Component {
   static propTypes = {
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
     style: React.PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     style: {},
-  }
+  };
 
   render() {
     return (

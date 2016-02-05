@@ -26,12 +26,12 @@ class Header extends Component {
     ]),
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
     style: React.PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     title: 'App Title',
     subtitle: 'Subtitle',
-  }
+  };
 
   title() {
     if(typeof(this.props.title) === 'string') {

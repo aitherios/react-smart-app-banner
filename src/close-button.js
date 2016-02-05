@@ -14,7 +14,7 @@ class CloseButton extends Component {
     svgFor: React.PropTypes.object,
     onClick: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     attributes: {
@@ -50,7 +50,7 @@ class CloseButton extends Component {
         },
       }
     },
-  }
+  };
 
   render() {
     return (
