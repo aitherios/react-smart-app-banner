@@ -25,11 +25,15 @@ class ViewButton extends Component {
     onClick: () => {},
   };
 
+  onClickHandler() {
+    this.props.onClick(this.props.os)
+  }
+
   render() {
     return (
       <a
         {... this.props.attributes[this.props.os]}
-        onClick={this.props.onClick}
+        onClick={::this.onClickHandler}
         style={Object.assign({},
           BaseStyle.viewButton.all,
           BaseStyle.viewButton[this.props.os],
