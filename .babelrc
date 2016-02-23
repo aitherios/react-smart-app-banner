@@ -5,10 +5,11 @@
     "stage-1",
     "react"
   ],
-  
+
   "plugins": [
     "transform-react-display-name",
     "transform-decorators-legacy",
-    "babel-plugin-add-module-exports"
+    "babel-plugin-add-module-exports",
+    "transform-object-assign"
   ]
 }
