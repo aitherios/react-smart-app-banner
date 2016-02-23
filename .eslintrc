@@ -23,13 +23,11 @@
     "eqeqeq": 0,
     "consistent-return": 0,
     "no-multi-spaces": 0,
-    "key-spacing": 0,
     "new-cap": 0,
     "jsx-quotes": 0,
     "semi": 0,
     "comma-dangle": 0,
 
-    "react/sort-comp": 0,
     "react/no-multi-comp": 0,
     "react/jsx-closing-bracket-location": 1,
     "react/jsx-curly-spacing": 1,
