@@ -6,7 +6,7 @@ export const BaseStyle = {
       justifyContent: 'flex-start',
       alignItems: 'center',
       alignContent: 'center',
-      padding: '2% 1%',
+      padding: '1.2vh 1.5vw',
     },
     android: {
       background: '#3d3d3d url(data:image/gif;base64,R0lGODlhCAAIAIABAFVVVf///yH5BAEHAAEALAAAAAAIAAgAAAINRG4XudroGJBRsYcxKAA7)',
