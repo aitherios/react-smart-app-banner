@@ -212,4 +212,18 @@ describe('ReactSmartAppBanner', () => {
       })
     })
   })
+
+  describe('#componentDidMount', () => {
+    let onUpdateSpy
+
+    beforeEach(() => {
+      onUpdateSpy = jasmine.createSpy('onUpdate')
+      component = renderComponent({ onUpdate: onUpdateSpy })
+    })
+
+    it('calls onUpdate callback', () => {
+      component.componentDidUpdate()
+      expect(onUpdateSpy).toHaveBeenCalledWith(component.state)
+    })
+  })
 })

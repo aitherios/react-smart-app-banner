@@ -39,10 +39,12 @@ class ReactSmartAppBanner extends Component {
     }),
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']),
     allowedOs: React.PropTypes.arrayOf(React.PropTypes.string),
+    onUpdate: React.PropTypes.func
   };
 
   static defaultProps = {
     allowedOs: ['android', 'windows', 'ios'],
+    onUpdate: () => {}
   };
 
   constructor(props) {
@@ -57,6 +59,10 @@ class ReactSmartAppBanner extends Component {
   componentDidMount() {
     this.detectOs()
     this.rememberHideState()
+  }
+
+  componentDidUpdate() {
+    this.props.onUpdate(this.state)
   }
 
   static storageKey = 'react-smart-app-banner_closed_at';
