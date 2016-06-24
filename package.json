@@ -1,6 +1,6 @@
 {
   "name": "react-smart-app-banner",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "A simple smart app banner implementation with React.js support",
   "main": "./dist/react-smart-app-banner-bundle.js",
   "scripts": {
