@@ -12,7 +12,9 @@
     "test-watch": "./node_modules/.bin/jest --watch",
     "test-debug": "./node_modules/.bin/node-debug --no-inject.network --no-inject.profiles --hidden node_modules/ --no-preload --cli --nodejs --harmony ./node_modules/.bin/jest --runInBand",
     "lint": "./node_modules/eslint/bin/eslint.js .",
-    "console": "./node_modules/babel-cli/bin/babel-node.js --debug"
+    "console": "./node_modules/babel-cli/bin/babel-node.js --debug",
+    "preversion": "npm run lint && npm test && npm run build",
+    "version": "git add package.json && git commit -m \"Bump version $npm_package_version\" && git tag -a $npm_package_version -m \"Version $npm_package_version\""
   },
   "homepage": "https://github.com/team-767/react-smart-app-banner",
   "repository": {
@@ -36,9 +38,13 @@
     "smartappbanner",
     "ReactSmartAppBanner"
   ],
-  "author": "Renan Mendes Carvalho <aitherios@gmail.com>",
+  "author": "Renan Mendes Carvalho <aitherios@gmail.com> (https://github.com/aitherios)",
   "maintainers": [
-    "Renan Mendes Carvalho <aitherios@gmail.com>"
+    "Renan Mendes Carvalho <aitherios@gmail.com> (https://github.com/aitherios)"
+  ],
+  "contributors": [
+    "Renan Mendes Carvalho <aitherios@gmail.com> (https://github.com/aitherios)",
+    "Célio Latorraca <celio.latorraca@corp.globo.com> (https://github.com/celiolatorraca)"
   ],
   "license": "MIT",
   "dependencies": {
