@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 import { renderToString } from 'react-dom/server'
 import { mount } from 'enzyme'
 
+import CloseButton from '../close-button'
 import ReactSmartAppBanner from '../smart-app-banner'
 
 describe('ReactSmartAppBanner', () => {
@@ -24,13 +25,13 @@ describe('ReactSmartAppBanner', () => {
     window.navigator = __origNav
   }
 
-  function renderComponent(props){
+  function renderComponent(props) {
     return mount(
       <ReactSmartAppBanner {...props} />
     )
   }
 
-  function serverRenderComponent(props){
+  function serverRenderComponent(props) {
     return renderToString(
       <ReactSmartAppBanner {...props} />
     )
@@ -149,10 +150,24 @@ describe('ReactSmartAppBanner', () => {
       resetUserAgent()
     })
 
+    it('uses close function on CloseButton click', () => {
+      component = renderComponent()
+
+      const closeButton = component.find(CloseButton)
+      expect(component.instance().close).toEqual(closeButton.prop('onClick'))
+    })
+
     it('sets the hide state', () => {
       component = renderComponent()
       component.instance().close()
       expect(component.state().hide).toBe(true)
+    })
+
+    it('calls onClose callback', () => {
+      const onClose = jest.fn()
+      component = renderComponent({ onClose })
+      component.instance().close()
+      expect(onClose).toBeCalled()
     })
 
     describe('6 days ago', () => {

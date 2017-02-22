@@ -55,7 +55,7 @@ class CloseButton extends Component {
   render() {
     return (
       <a
-        { ... Object.assign({}, this.props.attributes, {onClick: this.props.onClick}) }
+        {...Object.assign({}, this.props.attributes, { onClick: this.props.onClick })}
         style={Object.assign({},
           BaseStyle.closeButton.all,
           BaseStyle.closeButton[this.props.os],
