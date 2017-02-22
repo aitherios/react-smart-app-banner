@@ -47,6 +47,8 @@ class ReactSmartAppBanner extends Component {
     onUpdate: () => {}
   };
 
+  static storageKey = 'react-smart-app-banner_closed_at';
+
   constructor(props) {
     super(props)
   }
@@ -64,8 +66,6 @@ class ReactSmartAppBanner extends Component {
   componentDidUpdate() {
     this.props.onUpdate(this.state)
   }
-
-  static storageKey = 'react-smart-app-banner_closed_at';
 
   detectOs() {
     if (window && window.navigator && !this.props.os) {
