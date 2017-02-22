@@ -13,11 +13,15 @@ describe('ReactSmartAppBanner', () => {
   const __origNav = window.navigator
   const __origLocalStorage = window.localStorage
 
-  const setUserAgent = (userAgent) => {
+  function setUserAgent(userAgent) {
     Object.defineProperty(window.navigator, 'userAgent', {
       writable: true,
       value: userAgent
     })
+  }
+
+  function resetUserAgent() {
+    window.navigator = __origNav
   }
 
   function renderComponent(props){
@@ -39,16 +43,13 @@ describe('ReactSmartAppBanner', () => {
 
   describe('when using a Nexus 5 on Chrome', () => {
     beforeEach(() => {
-      Object.defineProperty(window.navigator, 'userAgent', {
-        writable: true,
-        value: 'Mozilla/5.0 (Linux; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.114 Mobile Safari/537.36'
-      })
+      setUserAgent('Mozilla/5.0 (Linux; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.114 Mobile Safari/537.36')
 
       component = renderComponent()
     })
 
     afterEach(() => {
-      window.navigator = __origNav
+      resetUserAgent()
     })
 
     it('renders', () => { expect(component).not.toBeFalsy() })
@@ -58,16 +59,13 @@ describe('ReactSmartAppBanner', () => {
 
   describe('when using a Nokia Lumia 520 on IEMobile', () => {
     beforeEach(() => {
-      Object.defineProperty(window.navigator, 'userAgent', {
-        writable: true,
-        value: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)'
-      })
+      setUserAgent('Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)')
 
       component = renderComponent()
     })
 
     afterEach(() => {
-      window.navigator = __origNav
+      resetUserAgent()
     })
 
     it('renders', () => { expect(component).not.toBeFalsy() })
@@ -77,16 +75,13 @@ describe('ReactSmartAppBanner', () => {
 
   describe('when using an iPhone 4 on Safari for iOS 4.2.1', () => {
     beforeEach(() => {
-      Object.defineProperty(window.navigator, 'userAgent', {
-        writable: true,
-        value: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
-      })
+      setUserAgent('Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5')
 
       component = renderComponent()
     })
 
     afterEach(() => {
-      window.navigator = __origNav
+      resetUserAgent()
     })
 
     it('renders', () => { expect(component).not.toBeFalsy() })
@@ -96,16 +91,13 @@ describe('ReactSmartAppBanner', () => {
 
   describe('when using an iPhone 5 on Chrome for iOS 7.0', () => {
     beforeEach(() => {
-      Object.defineProperty(window.navigator, 'userAgent', {
-        writable: true,
-        value: 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/534.46.0 (KHTML, like Gecko) CriOS/19.0.1084.60 Mobile/9B206 Safari/7534.48.3'
-      })
+      setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/534.46.0 (KHTML, like Gecko) CriOS/19.0.1084.60 Mobile/9B206 Safari/7534.48.3')
 
       component = renderComponent()
     })
 
     afterEach(() => {
-      window.navigator = __origNav
+      resetUserAgent()
     })
 
     it('renders', () => { expect(component).not.toBeFalsy() })
@@ -115,16 +107,13 @@ describe('ReactSmartAppBanner', () => {
 
   describe('when using an iPhone 5 on Safari for iOS 7.0', () => {
     beforeEach(() => {
-      Object.defineProperty(window.navigator, 'userAgent', {
-        writable: true,
-        value: 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53'
-      })
+      setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53')
 
       component = renderComponent()
     })
 
     afterEach(() => {
-      window.navigator = __origNav
+      resetUserAgent()
     })
 
     it('renders', () => { expect(component).not.toBeFalsy() })
@@ -153,14 +142,11 @@ describe('ReactSmartAppBanner', () => {
     var node
 
     beforeEach(() => {
-      Object.defineProperty(window.navigator, 'userAgent', {
-        writable: true,
-        value: 'Mozilla/5.0 (Linux; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.114 Mobile Safari/537.36'
-      })
+      setUserAgent('Mozilla/5.0 (Linux; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.114 Mobile Safari/537.36')
     })
 
     afterEach(() => {
-      window.navigator = __origNav
+      resetUserAgent()
     })
 
     it('sets the hide state', () => {
@@ -243,16 +229,13 @@ describe('ReactSmartAppBanner', () => {
   describe('when allowedOs is only ["android", "ios"]', () => {
     describe('and a Nokia Lumia 520 on IEMobile is used', () => {
       beforeEach(() => {
-        Object.defineProperty(window.navigator, 'userAgent', {
-          writable: true,
-          value: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)'
-        })
+        setUserAgent('Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)')
 
         component = renderComponent({allowedOs: ['android', 'ios']})
       })
 
       afterEach(() => {
-        window.navigator = __origNav
+        resetUserAgent()
       })
 
       it('renders', () => { expect(component).not.toBeFalsy() })
