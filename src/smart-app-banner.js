@@ -39,13 +39,17 @@ class ReactSmartAppBanner extends Component {
     }),
     os: React.PropTypes.oneOf(['android', 'windows', 'ios']),
     allowedOs: React.PropTypes.arrayOf(React.PropTypes.string),
-    onUpdate: React.PropTypes.func
+    onUpdate: React.PropTypes.func,
+    onClose: React.PropTypes.func
   };
 
   static defaultProps = {
     allowedOs: ['android', 'windows', 'ios'],
-    onUpdate: () => {}
+    onUpdate: () => {},
+    onClose: () => {}
   };
+
+  static storageKey = 'react-smart-app-banner_closed_at';
 
   constructor(props) {
     super(props)
@@ -64,8 +68,6 @@ class ReactSmartAppBanner extends Component {
   componentDidUpdate() {
     this.props.onUpdate(this.state)
   }
-
-  static storageKey = 'react-smart-app-banner_closed_at';
 
   detectOs() {
     if (window && window.navigator && !this.props.os) {
@@ -97,12 +99,13 @@ class ReactSmartAppBanner extends Component {
 
   checkAllowedOs() {
     if (this.props.allowedOs.indexOf(this.state.os) < 0) {
-      this.setState({hide: true})
+      this.setState({ hide: true })
     }
   }
 
-  close() {
-    this.setState({hide: true})
+  close = () => {
+    this.setState({ hide: true })
+
     if(
       window &&
       window.localStorage &&
@@ -110,36 +113,30 @@ class ReactSmartAppBanner extends Component {
     ){
       window.localStorage.setItem(ReactSmartAppBanner.storageKey, Date.now())
     }
+
+    this.props.onClose()
   }
 
   mergeProps(component) {
-    let props
-    if(component === 'closeButton'){
-      props = Object.assign({},
-        this.props[component],
-        {os: this.state.os, onClick: ::this.close}
-      )
-    } else {
-      props = Object.assign({},
-        this.props[component],
-        {os: this.state.os}
-      )
-    }
-    return props
+    return Object.assign({},
+      this.props[component],
+      { os: this.state.os }
+    )
   }
 
   render() {
-    if (this.state.hide) { return false }
+    if (this.state.hide) return false
+
     return (
       <section style={Object.assign({},
           BaseStyle.smartAppBanner.all,
           BaseStyle.smartAppBanner[this.state.os],
         )}
       >
-        <CloseButton {... this.mergeProps('closeButton')}/>
-        <Icon {... this.mergeProps('icon')}/>
-        <Header {... this.mergeProps('header')}/>
-        <ViewButton {... this.mergeProps('viewButton')}/>
+        <CloseButton {...this.mergeProps('closeButton')} onClick={this.close} />
+        <Icon {...this.mergeProps('icon')} />
+        <Header {...this.mergeProps('header')} />
+        <ViewButton {...this.mergeProps('viewButton')} />
       </section>
     )
   }
