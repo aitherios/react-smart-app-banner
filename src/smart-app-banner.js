@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import PureRender from 'pure-render-decorator'
 import MobileDetect from 'mobile-detect'
 
 import CloseButton from './close-button'
@@ -9,56 +9,50 @@ import Header from './header'
 import Icon from './icon'
 import { BaseStyle } from './stylesheets'
 
-@PureRender
 class ReactSmartAppBanner extends Component {
-
   static propTypes = {
-    closeButton: React.PropTypes.shape({
-      attributes: React.PropTypes.object,
-      text: React.PropTypes.string,
-      style: React.PropTypes.object,
+    closeButton: PropTypes.shape({
+      attributes: PropTypes.object,
+      text: PropTypes.string,
+      style: PropTypes.object,
     }),
-    icon: React.PropTypes.shape({
-      style: React.PropTypes.object,
+    icon: PropTypes.shape({
+      style: PropTypes.object,
     }),
-    header: React.PropTypes.shape({
-      title: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.object,
+    header: PropTypes.shape({
+      title: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
       ]),
-      subtitle: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.object,
+      subtitle: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
       ]),
-      style: React.PropTypes.object,
+      style: PropTypes.object,
     }),
-    viewButton: React.PropTypes.shape({
-      attributes: React.PropTypes.object,
-      text: React.PropTypes.string,
-      style: React.PropTypes.object,
+    viewButton: PropTypes.shape({
+      attributes: PropTypes.object,
+      text: PropTypes.string,
+      style: PropTypes.object,
     }),
-    os: React.PropTypes.oneOf(['android', 'windows', 'ios']),
-    allowedOs: React.PropTypes.arrayOf(React.PropTypes.string),
-    onUpdate: React.PropTypes.func,
-    onClose: React.PropTypes.func
-  };
+    os: PropTypes.oneOf(['android', 'windows', 'ios']),
+    allowedOs: PropTypes.arrayOf(PropTypes.string),
+    onUpdate: PropTypes.func,
+    onClose: PropTypes.func
+  }
 
   static defaultProps = {
     allowedOs: ['android', 'windows', 'ios'],
     onUpdate: () => {},
     onClose: () => {}
-  };
-
-  static storageKey = 'react-smart-app-banner_closed_at';
-
-  constructor(props) {
-    super(props)
   }
+
+  static storageKey = 'react-smart-app-banner_closed_at'
 
   state = {
     os: this.props.os || 'android',
     hide: this.props.os ? false : true,
-  };
+  }
 
   componentDidMount() {
     this.detectOs()
@@ -140,7 +134,6 @@ class ReactSmartAppBanner extends Component {
       </section>
     )
   }
-
 }
 
 export default ReactSmartAppBanner

@@ -1,37 +1,35 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import PureRender from 'pure-render-decorator'
 
 import { BaseStyle } from './stylesheets'
 
-@PureRender
 class Header extends Component {
-
   static propTypes = {
-    title: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.shape({
-        android: React.PropTypes.string,
-        windows: React.PropTypes.string,
-        ios: React.PropTypes.string,
+    title: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        android: PropTypes.string,
+        windows: PropTypes.string,
+        ios: PropTypes.string,
       }),
     ]),
-    subtitle: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.shape({
-        android: React.PropTypes.string,
-        windows: React.PropTypes.string,
-        ios: React.PropTypes.string,
+    subtitle: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        android: PropTypes.string,
+        windows: PropTypes.string,
+        ios: PropTypes.string,
       }),
     ]),
-    os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
-    style: React.PropTypes.object,
-  };
+    os: PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
+    style: PropTypes.object,
+  }
 
   static defaultProps = {
     title: 'App Title',
     subtitle: 'Subtitle',
-  };
+  }
 
   title() {
     if(typeof(this.props.title) === 'string') {
@@ -76,7 +74,6 @@ class Header extends Component {
       </header>
     )
   }
-
 }
 
 export default Header

@@ -1,19 +1,17 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import PureRender from 'pure-render-decorator'
 
 import { BaseStyle } from './stylesheets'
 
-@PureRender
 class ViewButton extends Component {
-
   static propTypes = {
-    attributes: React.PropTypes.object,
-    text: React.PropTypes.string,
-    os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
-    style: React.PropTypes.object,
-    onClick: React.PropTypes.func,
-  };
+    attributes: PropTypes.object,
+    text: PropTypes.string,
+    os: PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
+    style: PropTypes.object,
+    onClick: PropTypes.func,
+  }
 
   static defaultProps = {
     attributes: {
@@ -23,7 +21,7 @@ class ViewButton extends Component {
     },
     text: 'View',
     onClick: () => {},
-  };
+  }
 
   onClickHandler() {
     this.props.onClick(this.props.os)
@@ -44,7 +42,6 @@ class ViewButton extends Component {
       </a>
     )
   }
-
 }
 
 export default ViewButton

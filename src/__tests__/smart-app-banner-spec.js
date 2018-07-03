@@ -3,13 +3,15 @@ jest.disableAutomock()
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { renderToString } from 'react-dom/server'
-import { mount } from 'enzyme'
+import { configure, mount } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 import CloseButton from '../close-button'
 import ReactSmartAppBanner from '../smart-app-banner'
 
 describe('ReactSmartAppBanner', () => {
-
   var component
   const __origNav = window.navigator
   const __origLocalStorage = window.localStorage
@@ -129,13 +131,6 @@ describe('ReactSmartAppBanner', () => {
       it('renders', () => { expect(component).not.toBeFalsy() })
       it('is android', () => { expect(component.state().os).toBe('android') })
       it('is not hidden', () => { expect(component.state().hide).toBe(false) })
-    })
-  })
-
-  describe('when rendering in server', () => {
-    it('renders', () => {
-      component = serverRenderComponent()
-      expect(component).not.toBeFalsy()
     })
   })
 

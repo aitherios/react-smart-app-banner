@@ -1,4 +1,1 @@
-//import 'babel-polyfill'
-import ReactSmartAppBanner from './smart-app-banner'
-
-export default ReactSmartAppBanner
+export { default } from './smart-app-banner'

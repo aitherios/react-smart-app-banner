@@ -7,8 +7,6 @@
   ],
 
   "plugins": [
-    "transform-react-display-name",
-    "transform-decorators-legacy",
     "babel-plugin-add-module-exports"
   ]
 }
