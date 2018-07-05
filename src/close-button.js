@@ -1,19 +1,17 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import PureRender from 'pure-render-decorator'
 
 import { BaseStyle } from './stylesheets'
 
-@PureRender
 class CloseButton extends Component {
-
   static propTypes = {
-    attributes: React.PropTypes.object,
-    text: React.PropTypes.string,
-    os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
-    svgFor: React.PropTypes.object,
-    onClick: React.PropTypes.func.isRequired,
-    style: React.PropTypes.object,
+    attributes: PropTypes.object,
+    text: PropTypes.string,
+    os: PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
+    svgFor: PropTypes.object,
+    onClick: PropTypes.func.isRequired,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -50,7 +48,7 @@ class CloseButton extends Component {
         },
       }
     },
-  };
+  }
 
   render() {
     return (

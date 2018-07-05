@@ -1,20 +1,18 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import PureRender from 'pure-render-decorator'
 
 import { BaseStyle } from './stylesheets'
 
-@PureRender
 class Icon extends Component {
-
   static propTypes = {
-    os: React.PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
-    style: React.PropTypes.object,
-  };
+    os: PropTypes.oneOf(['android', 'windows', 'ios']).isRequired,
+    style: PropTypes.object,
+  }
 
   static defaultProps = {
     style: {},
-  };
+  }
 
   render() {
     return (
@@ -28,7 +26,6 @@ class Icon extends Component {
       />
     )
   }
-
 }
 
 export default Icon
